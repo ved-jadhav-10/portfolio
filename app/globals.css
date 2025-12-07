@@ -1,26 +1,181 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Black colors */
+  --color-black-default: #000;
+  --color-black-100: #000319;
+  --color-black-200: rgba(17, 25, 40, 0.75);
+  --color-black-300: rgba(255, 255, 255, 0.125);
+  
+  /* White colors */
+  --color-white-default: #fff;
+  --color-white-100: #bec1dd;
+  --color-white-200: #c1c2d3;
+  
+  /* Blue colors */
+  --color-blue-100: #e4ecff;
+  
+  /* Purple */
+  --color-purple: #cbacf9;
+  
+  /* shadcn-style semantic colors */
+  --color-background: oklch(100% 0 0);
+  --color-foreground: oklch(20.2% 0.01 256.8);
+  
+  --color-card: oklch(100% 0 0);
+  --color-card-foreground: oklch(20.2% 0.01 256.8);
+  
+  --color-primary: oklch(25% 0.01 256.8);
+  --color-primary-foreground: oklch(98% 0 0);
+  
+  --color-secondary: oklch(96.2% 0.002 256.8);
+  --color-secondary-foreground: oklch(25% 0.01 256.8);
+  
+  --color-muted: oklch(96.2% 0.002 256.8);
+  --color-muted-foreground: oklch(50.8% 0.005 256.8);
+  
+  --color-accent: oklch(96.2% 0.002 256.8);
+  --color-accent-foreground: oklch(25% 0.01 256.8);
+  
+  --color-destructive: oklch(62.8% 0.237 29.2);
+  --color-destructive-foreground: oklch(98% 0 0);
+  
+  --color-popover: oklch(100% 0 0);
+  --color-popover-foreground: oklch(20.2% 0.01 256.8);
+  
+  --color-border: oklch(92.3% 0.003 256.8);
+  --color-input: oklch(92.3% 0.003 256.8);
+  --color-ring: oklch(20.2% 0.01 256.8);
+  
+  /* Border radius */
+  --radius: 0.5rem;
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+  
+  /* Container */
+  --container-center: true;
+  --container-padding: 2rem;
+  --container-2xl: 1400px;
+  
+  /* Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-first: moveVertical 30s ease infinite;
+  --animate-second: moveInCircle 20s reverse infinite;
+  --animate-third: moveInCircle 40s linear infinite;
+  --animate-fourth: moveHorizontal 40s ease infinite;
+  --animate-fifth: moveInCircle 20s ease infinite;
+  --animate-scroll: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
   }
 }
 
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes moveHorizontal {
+  0% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+  50% {
+    transform: translateX(50%) translateY(10%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+}
+
+@keyframes moveInCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveVertical {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scroll {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+button:active {
+  outline: none;
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 2.25rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .heading {
+    font-size: 3rem;
+  }
+}
+
+.black-gradient {
+  background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
 }
